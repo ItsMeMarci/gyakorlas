@@ -10,12 +10,21 @@ with open("diakok.txt", "r", encoding="utf-8") as f:
 #print(dict(list(diakok.items())[:2]))
 #print(diakok.get("Kiss Zsolt").get("evfolyam")) #output: 10
 #print(diakok["Kiss Zsolt"]["evfolyam"]) #ugyanugy 10
+
 def kereses(diak: str):
+    """
+    Prints the given student's data if that exists.
+    :param diak: The given student's name.
+    """
     print(f"Diák: {diak}\nKedvenc tárgya: {diakok[diak]["targy"]}\nÁtlaga: {diakok[diak]["atlag"]}") \
         if diakok.get(diak) is not None else print("nincs ilyen arc")
 #kereses("Kiss Zsolt")
 
 def atlag(dictem: dict):
+    """
+    Prints the mean of the students' avarage grades.
+    :param dictem: The diakok.txt parsed to diakok dict.
+    """
     if isinstance(dictem, dict):
         osszesen = 0
         for atlag in dictem.values():
@@ -25,6 +34,11 @@ def atlag(dictem: dict):
 #atlag(diakok)
 
 def statisztika(dictem: dict):
+    """
+    Prints the students with the best and the worst results.
+    :param dictem: The diakok.txt parsed to diakok dict.
+    :return:
+    """
     if isinstance(dictem, dict):
         #legjobb = max([x["atlag"] for x in dictem.values()])
         legjobb = dict([sorted(dictem.items(), key=lambda k: k[1]["atlag"], reverse=True)[0]])
@@ -40,6 +54,10 @@ def statisztika(dictem: dict):
 #statisztika(diakok)
 
 def evfolyam_atlag(dictem: dict):
+    """
+    Prints the mean grades for each class.
+    :param dictem: The diakok.txt parsed to diakok dict.
+    """
     if isinstance(dictem, dict):
         #kulcs, ertek = sorted(dictem.items(), key=lambda k: k[1]["evfolyam"])
         #rendezett_dictem = dict(sorted(dictem.items(), key=lambda k: k[1]["evfolyam"]), reverse=False)
@@ -60,6 +78,10 @@ def evfolyam_atlag(dictem: dict):
 #evfolyam_atlag(diakok)
 
 def tantargy_atlag(dictem: dict):
+    """
+    Prints the mean grades for each subject.
+    :param dictem: The diakok.txt parsed to diakok dict.
+    """
     if isinstance(dictem, dict):
         targyankent_atlag = dict()
         for i in dictem.values():
@@ -70,4 +92,4 @@ def tantargy_atlag(dictem: dict):
             targyankent_atlag[kulcs] = sum(floatra_kasztolva) / len(floatra_kasztolva)
             print(f"{kulcs}: {targyankent_atlag[kulcs] :,.3f}")
 
-tantargy_atlag(diakok)
+#tantargy_atlag(diakok)
