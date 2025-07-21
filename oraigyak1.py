@@ -1,4 +1,4 @@
-with open("diakok copy.txt", "r", encoding="utf-8") as f:
+with open("diakok.txt", "r", encoding="utf-8") as f:
     diakok = dict()
     for sor in f:
         nev, evfolyam, targy, atlag = sor.strip().split(":")
